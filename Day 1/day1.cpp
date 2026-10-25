@@ -24,7 +24,10 @@ public:
 };
 int main() {
     Solution solution;
+    string input ;
+    cin >> input;
 
-    cout << "Hello, World!" << endl;
+    solution.isValid(input);
+
     return 0;
 }
