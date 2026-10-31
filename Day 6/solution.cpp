@@ -51,3 +51,35 @@ int main() {
     
     return 0;
 }
+
+#include <iostream>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n = 7;
+    queue<int> q;
+    for (int i = 1; i <= n; ++i) q.push(i);
+
+    vector<int> discarded;
+    
+    // محاكاة الفكرة:
+    while (q.size() > 1) {
+        int current = q.front();
+        q.pop();
+        
+        // بدلاً من الحذف والترتيب المعقد، 
+        // الـ Queue نفسه يضمن الترتيب بالتبادل:
+        // الخطوة الأولى تُحذف، الخطوة الثانية تُرسل للخلف
+        discarded.push_back(current);
+        
+        // نقل البطاقة التالية للخلف
+        q.push(q.front());
+        q.pop();
+    }
+    
+    // طباعة النتائج...
+    return 0;
+}
