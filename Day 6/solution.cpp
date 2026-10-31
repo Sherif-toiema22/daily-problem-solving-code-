@@ -22,12 +22,12 @@ void solve() {
             discarded.push_back(deck.front());
             deck.pop();
             
-            // 2. نقل البطاقة التالية إلى أسفل المجموعة
+            
             deck.push(deck.front());
             deck.pop();
         }
         
-        // طباعة البطاقات المرمية بالشكل المطلوب
+       
         cout << "Discarded cards:";
         for (size_t i = 0; i < discarded.size(); ++i) {
             cout << " " << discarded[i];
@@ -37,7 +37,7 @@ void solve() {
         }
         cout << "\n";
         
-        // طباعة البطاقة المتبقية
+       
         cout << "Remaining card: " << deck.front() << "\n";
     }
 }
