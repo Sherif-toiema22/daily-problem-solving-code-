@@ -59,7 +59,9 @@ int main() {
 using namespace std;
 
 int main() {
-    int n = 7;
+    int n = 0;
+
+    while (cin >> n && n != 0) {
     queue<int> q;
     for (int i = 1; i <= n; ++i) q.push(i);
 
@@ -81,5 +83,15 @@ int main() {
     }
     
     // طباعة النتائج...
+    cout << "Discarded cards:";
+    for (size_t i = 0; i < discarded.size(); ++i) {
+        cout << " " << discarded[i];
+        if (i + 1 < discarded.size()) {
+            cout << ",";
+        }
+    }
+    cout << "\nRemaining card: " << q.front() << "\n";
+    }   
+    
     return 0;
 }
