@@ -23,7 +23,7 @@ int main() {
              // مؤشر لتحديد هل الطابور مقلوب أم لا
             if (p!=p2 && total_length >= 0)
             {
-                solution+=1;
+                solution++;
                 total_length-=l1;
                 p2=p;
             }
@@ -33,7 +33,7 @@ int main() {
             }
             else if (total_length < 0)
             {
-                solution+=1;
+                solution++;
                 total_length=l*100-l1;
             }
 
