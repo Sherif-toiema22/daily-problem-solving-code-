@@ -3,17 +3,18 @@
 #include <string>
 
 using namespace std;
-
+#define fast  ios::sync_with_stdio(false), cin.tie(nullptr) , cout.tie(nullptr);
 int main() {
+    fast;
     int c;
     cin>>c;
-    stack<int> s;
+    stack<long long> s;
     while (c--){
         int a;
         cin>>a;
         if (a==1)
         {
-            int v;
+            long long v;
             cin>>v;
             s.push(v);
         }   
