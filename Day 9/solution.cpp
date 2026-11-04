@@ -11,38 +11,36 @@ int main() {
     {
         int l,m;
         cin>>l>>m;
-        
+        int total_length=l*100;
         int solution=0;
-        
+        string p2="left";
         while (m--)
         {
             int l1;
-            int total_length=l*100;
-            string p,p2="left";
+            
+            string p;
             cin>>l1>>p;
              // مؤشر لتحديد هل الطابور مقلوب أم لا
-            if (p=="right" )
+            if (p!=p2 && total_length >= 0)
             {
-                // مؤشر لتحديد هل الطابور مقلوب أم لا
                 solution+=1;
-                p2="right";
                 total_length-=l1;
+                p2=p;
             }
-            else if (p=="left" && total_length >= 0 && p2==p)
+            else if (p==p2 && total_length >= 0 )
             {
                 total_length-=l1;
-                p2="left";
             }
-            else if (p=="right" && total_length >= 0 && p2==p)
+            else if (total_length < 0)
             {
-                total_length-=l1;
-                p2="right";
+                solution+=1;
+                total_length=l*100-l1;
             }
 
 
             /* code */
         }
-        
+        cout<<solution<<"\n";
         /* code */
     }
     
