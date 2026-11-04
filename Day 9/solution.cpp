@@ -11,27 +11,33 @@ int main() {
     {
         int l,m;
         cin>>l>>m;
-        int totaal_length=l*100;
+        
         int solution=0;
-        bool is_reversed = false;
+        
         while (m--)
         {
             int l1;
-            string p,p2;
+            int total_length=l*100;
+            string p,p2="left";
             cin>>l1>>p;
              // مؤشر لتحديد هل الطابور مقلوب أم لا
-            if (p=="right" && is_reversed == false)
+            if (p=="right" )
             {
-                is_reversed = true; // مؤشر لتحديد هل الطابور مقلوب أم لا
+                // مؤشر لتحديد هل الطابور مقلوب أم لا
                 solution+=1;
                 p2="right";
+                total_length-=l1;
             }
-            else if (p=="left" )
+            else if (p=="left" && total_length >= 0 && p2==p)
             {
-                solution+=1;
+                total_length-=l1;
                 p2="left";
             }
-            
+            else if (p=="right" && total_length >= 0 && p2==p)
+            {
+                total_length-=l1;
+                p2="right";
+            }
 
 
             /* code */
