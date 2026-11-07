@@ -1,3 +1,5 @@
+https://vjudge.net/contest/449708#problem/B
+
 A student of z-school found a kind of sorting called z-sort. The array a with n elements are z-sorted if two conditions hold:
 
 ai ≥ ai - 1 for all even i,
