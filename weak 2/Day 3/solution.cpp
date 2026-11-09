@@ -1,35 +1,32 @@
-#include <vector>
+#include<bits/stdc++.h>
+using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
-public:
-    std::vector<int> inorderTraversal(TreeNode* root) {
-        std::vector<int> res;
-        helper(root, res);
-        return res;
-    }
-    void helper(TreeNode* root, std::vector<int>& res) {
-        if (root != NULL) {
-            helper(root->left, res);
-            res.push_back(root->val);
-            helper(root->right, res);
-        }
-    }
-};
+// 4 100 2
+// 20 30 75 80
+// 17
 int main(){
+    int n,m,k;
+    cin>>n>>m>>k;
+    int a[n], diff[n];
+    int total=0;
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+        
 
-    Solution s;
+    }
     
+    total=a[n-1]-a[0]+1;
+
+    for(int i=0;i<n-1;i++){
+        diff[i]=a[i+1]-a[i]-1;
+    }
+    sort(diff,diff+n-1,greater<int>());
+    for(int i=0;i<k-1;i++){
+        
+        total-=diff[i];
+    }
+
+    cout<<total<<"\n";
 
 
-    return 0;
 }
-
