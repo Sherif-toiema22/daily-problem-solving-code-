@@ -1,35 +1,36 @@
-#include <vector>
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
-public:
-    std::vector<int> inorderTraversal(TreeNode* root) {
-        std::vector<int> res;
-        helper(root, res);
-        return res;
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> a(n),b(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+        b[i]=a[i];
     }
-    void helper(TreeNode* root, std::vector<int>& res) {
-        if (root != NULL) {
-            helper(root->left, res);
-            res.push_back(root->val);
-            helper(root->right, res);
+    sort(b.begin(),b.end());
+
+int k=0,l=0;
+if(n%2)
+l=1;
+else
+l=0;
+    for(int i=0;i<n;i++){
+        if(i%2==0){
+            a[i]=b[k];
+            k++;
+            
+        }
+        else{
+            a[i]=b[n/2+l];
+            l++;
+            
         }
     }
-};
-int main(){
-
-    Solution s;
     
-
-
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    
     return 0;
 }
-
