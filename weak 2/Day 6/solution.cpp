@@ -1,35 +1,51 @@
-#include <vector>
+#include<bits/stdc++.h>
+using namespace std;
+// 5 4
+// 1 3 5 7 9
+// 6 4 2 8
+// 3 2 1 4
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
-public:
-    std::vector<int> inorderTraversal(TreeNode* root) {
-        std::vector<int> res;
-        helper(root, res);
-        return res;
-    }
-    void helper(TreeNode* root, std::vector<int>& res) {
-        if (root != NULL) {
-            helper(root->left, res);
-            res.push_back(root->val);
-            helper(root->right, res);
-        }
-    }
-};
 int main(){
+    int x,y; 
+    cin>>x >> y;
+    int arr[x], ar[y];
+    int sArr[x],sAr[y];
+    for (int i = 0; i < x; i++)
+    {
+        cin>> arr[i];
+        sArr[i]=arr[i];
+        /* code */
+    }
+    for (int i = 0; i < y; i++)
+    {
+        cin>> ar[i];
+        sAr[i]=ar[i];
+        /* code */
+    }
+    sort(sArr,sArr+x);
+    sort(sAr,sAr+y);
 
-    Solution s;
+    map<int,int> mp;
+    int j=0,k=0;
+    for (int i = 0; i < x; i++)
+    {
+        if(sArr[i]>sAr[j]){
+                
+            mp[sAr[j]]=k;
+            j++;    
+        }
+        else{
+            k++;
+        
+        }
+        
+    }
+    for (int i = 0; i < y; i++)
+    {
+        cout<<mp[ar[i]]<< " ";
+        /* code */
+    }
     
-
-
-    return 0;
+    
+    
 }
-
