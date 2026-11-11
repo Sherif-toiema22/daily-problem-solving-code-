@@ -31,8 +31,7 @@ int main(){
     {
         if(sArr[i]>sAr[j]){
                 
-            mp[sAr[j]]=k;
-            j++;    
+            mp[sAr[j++]]=k;
         }
         else{
             k++;
