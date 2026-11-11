@@ -1,50 +1,23 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define LetsGo ios::sync_with_stdio(0);cin.tie(0);cout.tie(0)
 using namespace std;
-// 5 4
-// 1 3 5 7 9
-// 6 4 2 8
-// 3 2 1 4
+//https://codeforces.com/contest/81/problem/A
+int main()
+{
+    LetsGo;
+    int x,y;
+    cin>>x>>y;
+    vector<int>v;
+    for(int i=0;i<x;i++){
+        int c;cin>>c;
+        v.push_back(c);
+    }
+    sort(v.begin(),v.end());
+    while(y--){
+        int test;cin>>test;
+        int ans=upper_bound(v.begin(),v.end(),test) - v.begin();
+        cout<<ans<<"\n";
+    }
 
-int main(){
-    int x,y; 
-    cin>>x >> y;
-    int arr[x], ar[y];
-    int sArr[x],sAr[y];
-    for (int i = 0; i < x; i++)
-    {
-        cin>> arr[i];
-        sArr[i]=arr[i];
-        /* code */
-    }
-    for (int i = 0; i < y; i++)
-    {
-        cin>> ar[i];
-        sAr[i]=ar[i];
-        /* code */
-    }
-    sort(sArr,sArr+x);
-    sort(sAr,sAr+y);
-
-    map<int,int> mp;
-    int j=0,k=0;
-    for (int i = 0; i < x; i++)
-    {
-        if(sArr[i]>sAr[j]){
-                
-            mp[sAr[j++]]=k;
-        }
-        else{
-            k++;
-        
-        }
-        
-    }
-    for (int i = 0; i < y; i++)
-    {
-        cout<<mp[ar[i]]<< " ";
-        /* code */
-    }
-    
-    
-    
+ return 0;
 }
