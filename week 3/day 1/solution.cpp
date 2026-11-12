@@ -8,19 +8,20 @@ int main() {
     for (long long i = 0; i < n; i++) {
         cin >> a[i];
     }
-    long long total = 0;
-    long long j=2;
-    for (long long i = 0; i < n; i++) {
-        while (j < n && a[j] - a[i] <= m) {
-            j++;
-        }
-        long long d = j - i - 1;
-        total += d * (d - 1) / 2;
+    int s=0,mn=0;
+    for (int i = 0; i < m; i++) {
+        s+=a[i];
     }
+    int solu=1;
+    mn=s;
+    for (int i = 1; i <= n - m; i++) {
+        s+=a[i+m-1]-a[i-1];
+        mn=min(mn,s);
+        if(s<mn){
+            solu=i+1;
+        }
+        
+    }
+    cout << solu << endl;
 
-
-
-
-    cout << total << endl;
-    return 0;
 }
