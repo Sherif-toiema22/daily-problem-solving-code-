@@ -6,8 +6,8 @@ using namespace std;
 int main() {
     long long n;
     cin >> n;
-    int numOfUnique = 0;
-    vector<long long> arr(n);
+    
+    vector<long long> arr(n + 1, 0);
     vector<long long> ar(n);
     for (long long i = 0; i < n; i++) {
         cin >> ar[i];
@@ -20,11 +20,11 @@ int main() {
             continue;
         }
         else if (ar[i] > arr[ar[i]] && arr[ar[i]] > 0) {
-            s+=  ar[i] - arr[ar[i]];
+            s+=  arr[ar[i]];
             arr[ar[i]] = -1;
         }
         else  if (ar[i] < arr[ar[i]] && arr[ar[i]] > 0) {
-            s+=  arr[ar[i]];
+            s+=  arr[ar[i]] - ar[i];
             arr[ar[i]] = -1;
         }
 
