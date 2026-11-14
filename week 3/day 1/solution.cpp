@@ -1,27 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+// 8
+// 2 7 1 8 2 8 1 8
+// 5
 int main() {
-    long long n, m;
-    cin >> n >> m;
-    long long a[n];
+    long long n;
+    cin >> n;
+    int numOfUnique = 0;
+    vector<long long> arr(n);
+    vector<long long> ar(n);
     for (long long i = 0; i < n; i++) {
-        cin >> a[i];
+        cin >> ar[i];
+        arr[ar[i]]++;
+
     }
-    int s=0,mn=0;
-    for (int i = 0; i < m; i++) {
-        s+=a[i];
-    }
-    int solu=1;
-    mn=s;
-    for (int i = 1; i <= n - m; i++) {
-        s+=a[i+m-1]-a[i-1];
-        mn=min(mn,s);
-        if(s<mn){
-            solu=i+1;
+    int s=0;
+    for (long long i = 0; i < n; i++) {
+        if(ar[i] == arr[ar[i]] || arr[ar[i]] == -1){
+            continue;
         }
+        else if (ar[i] > arr[ar[i]] && arr[ar[i]] > 0) {
+            s+=  ar[i] - arr[ar[i]];
+            arr[ar[i]] = -1;
+        }
+        else  if (ar[i] < arr[ar[i]] && arr[ar[i]] > 0) {
+            s+=  arr[ar[i]];
+            arr[ar[i]] = -1;
+        }
+
         
     }
-    cout << solu << endl;
 
+    cout << s << endl;
+return 0;
 }
+    
