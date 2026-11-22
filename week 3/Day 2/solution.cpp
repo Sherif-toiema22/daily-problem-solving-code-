@@ -1,36 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int n;
-    cin>>n;
-    vector<int> a(n),b(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-        b[i]=a[i];
+    int x,y;
+    cin>>x>>y;
+    int A[x],B[y];
+    vector<int> C;
+    for(int i=0;i<x;i++){
+        cin>>A[i];
+        C.push_back(A[i]);
     }
-    sort(b.begin(),b.end());
-
-int k=0,l=0;
-if(n%2)
-l=1;
-else
-l=0;
-    for(int i=0;i<n;i++){
-        if(i%2==0){
-            a[i]=b[k];
-            k++;
-            
+    for(int i=0;i<y;i++){
+        cin>>B[i];
+        C.push_back(B[i]);
+    }
+    sort(C.begin(), C.end());
+    vector<int> D;
+    for(int i=0;i<C.size();i++){
+        if(C[i]!=C[i+1]){
+            D.push_back(C[i]);
         }
         else{
-            a[i]=b[n/2+l];
-            l++;
-            
+            i++;
+
         }
+
+        
+        
+    }
+    for(int i=0;i<D.size();i++){
+        cout<<D[i]<<" ";
     }
     
-    for(int i=0;i<n;i++){
-        cout<<a[i]<<" ";
-    }
-    
+   
     return 0;
 }

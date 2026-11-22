@@ -1,67 +1,65 @@
-#include <bits/stdc++.h>
-#define LetsGo ios::sync_with_stdio(0);cin.tie(0);cout.tie(0)
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
 using namespace std;
-//https://codeforces.com/contest/81/problem/A
-int main()
-{
-    LetsGo;
-    int x,y;
-    cin>>x>>y;
-    vector<int>v;
-    for(int i=0;i<x;i++){
-        int c;cin>>c;
-        v.push_back(c);
+void SherifSolves() {
+    int n, k;
+    cin >>n>>k;
+    string s;
+    cin >> s;
+    vector<int>v1;
+    int len =1;
+    
+    for (int i = 1;i<n;++i) {
+        if (s[i] ==s[i-1]) {
+            len++;
+        } else {
+            v1.push_back(len);
+            len = 1;
+        }
     }
-    sort(v.begin(),v.end());
-    while(y--){
-        int test;cin>>test;
-        int ans=upper_bound(v.begin(),v.end(),test) - v.begin();
-        cout<<ans<<"\n";
+    v1.push_back(len);
+    int transitions =0;
+    for (int i = 1;i<n;++i) 
+    {
+        if (s[i]!=s[i-1]) {
+            transitions++;
+        }
     }
 
- return 0;
+    int max_transitions =transitions+min(k,(n-1)-transitions);
+    int blocks =max_transitions+1;
+
+    vector<int> sz(blocks, 1);
+    int rem = n -blocks;
+    for (int i = 0; i <rem;++i) {
+        sz[i % blocks]++;
+    }
+
+    long long ans=1;
+    for (int l : sz) {
+        ans+= l *(l+1)/2;
+    }
+    long long prefix_sum=0;
+    for (int l:sz) {
+        ans +=prefix_sum*l;
+        prefix_sum+=l;
+    }
+    if (n == 1 && k>=1) {
+        ans = 2;
+    }
+    cout << ans<<"\n";
 }
 
-
-#include <bits/stdc++.h>
-using namespace std;
-
 int main() {
-    int x, y;
-    cin >> x >> y;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-    vector<int> arr(x), ar(y);
-
-    for (int i = 0; i < x; i++)
-        cin >> arr[i];
-
-    for (int i = 0; i < y; i++)
-        cin >> ar[i];
-
-    vector<int> sArr = arr;
-    vector<int> sAr = ar;
-
-    sort(sArr.begin(), sArr.end());
-    sort(sAr.begin(), sAr.end());
-
-    map<int, int> mp;
-
-    int i = 0;
-    int j = 0;
-
-    while (j < y) {
-
-        while (i < x && sArr[i] <= sAr[j]) {
-            i++;
-        }
-
-        mp[sAr[j]] = i;
-        j++;
+    int t;
+    cin >> t;
+    while (t--) {
+        SherifSolves();
     }
-
-    for (int i = 0; i < y; i++) {
-        cout << mp[ar[i]] << " ";
-    }
-
     return 0;
 }
