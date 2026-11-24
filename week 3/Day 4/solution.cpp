@@ -1,54 +1,76 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <stack>
+#include <queue>
 
 using namespace std;
 
-void solve() {
-    int t;
-    cin >> t;
-    
-    for (int case_num = 1; case_num <= t; ++case_num) {
-        int term1, term2, final_exam, attendance;
-        int ct1, ct2, ct3;
-        
-        cin >> term1 >> term2 >> final_exam >> attendance >> ct1 >> ct2 >> ct3;
-        
-        // وضع درجات الاختبارات الصفية في مصفوفة لسهولة الترتيب
-        vector<int> cts = {ct1, ct2, ct3};
-        sort(cts.begin(), cts.end()); // ترتيب تصاعدي: أصغر دربتين ثم الأكبر
-        
-        // أخذ متوسط أفضل اختبارين (العنصرين الثاني والثالث بعد الترتيب)
-        double best_two_avg = (cts[1] + cts[2]) / 2.0;
-        
-        // حساب المجموع الكلي
-        double total = term1 + term2 + final_exam + attendance + best_two_avg;
-        
-        // تحديد التقدير الحرفي بناءً على الشروط
-        char grade;
-        if (total >= 90) {
-            grade = 'A';
-        } else if (total >= 80) {
-            grade = 'B';
-        } else if (total >= 70) {
-            grade = 'C';
-        } else if (total >= 60) {
-            grade = 'D';
-        } else {
-            grade = 'F';
+void SherifSolves(int n) {
+    stack<int> st;
+    queue<int> q;
+    priority_queue<int> pq;
+
+    bool is_stack = true;
+    bool is_queue = true;
+    bool is_pq = true;
+
+    for (int i = 0; i < n; ++i) {
+        int type, x;
+        cin >> type >> x;
+
+        if (type == 1) {
+            if (is_stack) st.push(x);
+            if (is_queue) q.push(x);
+            if (is_pq) pq.push(x);
+        } else { // type == 2
+            if (is_stack) {
+                if (st.empty() || st.top() != x) {
+                    is_stack = false;
+                } else {
+                    st.pop();
+                }
+            }
+
+            if (is_queue) {
+                if (q.empty() || q.front() != x) {
+                    is_queue = false;
+                } else {
+                    q.pop();
+                }
+            }
+
+            if (is_pq) {
+                if (pq.empty() || pq.top() != x) {
+                    is_pq = false;
+                } else {
+                    pq.pop();
+                }
+            }
         }
-        
-        // طباعة النتيجة بالشكل المطلوب في عينة المخرجات
-        cout << "Case " << case_num << ": " << grade << "\n";
+    }
+
+    int possible_count = (int)is_stack + (int)is_queue + (int)is_pq;
+
+    if (possible_count == 0) {
+        cout << "impossible\n";
+    } else if (possible_count > 1) {
+        cout << "not sure\n";
+    } else if (is_stack) {
+        cout << "stack\n";
+    } else if (is_queue) {
+        cout << "queue\n";
+    } else {
+        cout << "priority queue\n";
     }
 }
 
 int main() {
-    // تسريع عمليات الإدخال والإخراج
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    solve();
-    
+
+    int n;
+    while (cin >> n) {
+        SherifSolves(n);
+    }
+
     return 0;
 }
