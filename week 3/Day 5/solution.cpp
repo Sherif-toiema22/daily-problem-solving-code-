@@ -9,10 +9,11 @@ int main() {
 
     int t;
     cin>>t;
+    map<string,int> mp;
     while(t--){
         string s;
         cin>>s;
-        map<string,int> mp;
+        
         mp[s]++;
         if(mp[s]<2){
             cout<<"OK"<<endl;
