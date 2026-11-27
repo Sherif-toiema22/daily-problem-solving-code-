@@ -1,37 +1,50 @@
 #include <iostream>
-#include <string>
+#include <algorithm>
+#include <math.h>
 using namespace std;
+// 7
+// 4 2 10
+// 3 1 4 2
+// 3 3 100
+// 10 20 30
 
-void solve() {
-    int n;
-    string s;
-    cin >>n >>s;
-    if (n %2==1) {
-        cout<<"NO\n";
-        return;
-    }
-    bool alternating =true;
-    for (int i =1;i < n; ++i) {
-        if (s[i]==s[i -1]) {
-            alternating =false;
-            break;
-        }
-    }
-
-    if (alternating) {
-        cout<<"NO\n";
-    } else {
-        cout<<"YES\n";
-    }
-}
-
+// 20 100
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int t;
-    cin >>t;
-    while (t--) {
-        solve();
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n;
+    cin >> n;
+
+    while (n--) {
+        long long a, b, c;
+        cin >> a >> b >> c;
+
+        long long arr[a];
+        for (int i = 0; i < a; ++i) {
+            cin >> arr[i];
+        }
+
+        sort(arr.begin(), arr.end());
+        long long juiceSum = 0;
+        int i = 0;
+
+        while (i + b <= a) {
+            long long fresh_sum = 0;
+            for (int j = 0; j < b; ++j) {
+                fresh_sum += arr[i + j];
+            }
+
+            juiceSum += max(c, fresh_sum);
+            i += b;
+        }
+
+        while (i < a) {
+            juiceSum += arr[i];
+            ++i;
+        }
+
+        cout << juiceSum << '\n';
     }
 
     return 0;
