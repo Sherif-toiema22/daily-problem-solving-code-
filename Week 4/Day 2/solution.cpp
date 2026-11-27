@@ -1,35 +1,38 @@
-#include <vector>
+#include <iostream>
+#include <string>
+using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
-public:
-    std::vector<int> inorderTraversal(TreeNode* root) {
-        std::vector<int> res;
-        helper(root, res);
-        return res;
+void solve() {
+    int n;
+    string s;
+    cin >>n >>s;
+    if (n %2==1) {
+        cout<<"NO\n";
+        return;
     }
-    void helper(TreeNode* root, std::vector<int>& res) {
-        if (root != NULL) {
-            helper(root->left, res);
-            res.push_back(root->val);
-            helper(root->right, res);
+    bool alternating =true;
+    for (int i =1;i < n; ++i) {
+        if (s[i]==s[i -1]) {
+            alternating =false;
+            break;
         }
     }
-};
-int main(){
 
-    Solution s;
-    
+    if (alternating) {
+        cout<<"NO\n";
+    } else {
+        cout<<"YES\n";
+    }
+}
 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin >>t;
+    while (t--) {
+        solve();
+    }
 
     return 0;
 }
-
